@@ -1,0 +1,30 @@
+GET http://localhost:8066/spAddress/selectOne?id=1&id=073f24db5ba442d7b5a74dd78ef6334a
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+GET http://localhost:8066/spAddress/selectOne?id=1
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+GET http://localhost:8066/spAddress/selectOne?id=1
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+GET http://localhost:8066/spAddress/selectOne
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+GET http://localhost:8066/spAddress/selectOne
+Accept: */*
+Cache-Control: no-cache
+
+###
+
