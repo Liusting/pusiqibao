@@ -66,10 +66,24 @@
     "shortType" : null,
     "custom" : false,
     "ext" : { }
+  }, {
+    "name" : "createtime",
+    "comment" : null,
+    "type" : null,
+    "shortType" : null,
+    "custom" : false,
+    "ext" : { }
+  }, {
+    "name" : "updatetime",
+    "comment" : null,
+    "type" : null,
+    "shortType" : null,
+    "custom" : false,
+    "ext" : { }
   } ],
   "pkColumn" : null,
   "otherColumn" : null,
-  "savePackageName" : "com.example.wetchat",
-  "savePath" : "./wetchat/src/main/java/com/example/wetchat",
-  "saveModelName" : "wetchat"
+  "savePackageName" : "com.pusiqibao",
+  "savePath" : "./pusiqibao-miniprogram/src/main/java/com/pusiqibao",
+  "saveModelName" : "pusiqibao-miniprogram"
 }
