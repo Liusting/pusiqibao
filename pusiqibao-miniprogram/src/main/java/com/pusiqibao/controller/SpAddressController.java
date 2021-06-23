@@ -66,6 +66,14 @@ public class SpAddressController {
         return AjaxResult.success("操作成功",pageInfo);
     }
 
+    @PutMapping
+    @ApiOperation("地址删除")
+    public AjaxResult deleteAddress(String[] ids){
+        for (int i=0;i<ids.length;i++){
+            this.spAddressService.deleteById(ids[i]);
+        }
+        return AjaxResult.success("操作成功");
+    }
 
 
 }
