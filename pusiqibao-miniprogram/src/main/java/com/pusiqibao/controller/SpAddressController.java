@@ -33,8 +33,6 @@ public class SpAddressController {
     @Resource
     private SpAddressService spAddressService;
 
-    @Autowired
-    private SpAddressDao spAddressDao;
 
     /**
      * 通过主键查询单条数据

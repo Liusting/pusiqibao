@@ -34,6 +34,6 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
     driverClassName: com.mysql.cj.jdbc.Driver
     druid:
-        url: jdbc:mysql://localhost:3306/pusiqibao?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8&useSSL=false
+        url: jdbc:mysql://106.55.150.54:3306/pusiqibao?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8&useSSL=false
         username: root
         password: 123456
