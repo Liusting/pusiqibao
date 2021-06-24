@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="65d4446b-a47c-4e47-8d41-0f6359aca9da" name="Default Changelist" comment="" />
+    <list default="true" id="65d4446b-a47c-4e47-8d41-0f6359aca9da" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/pusiqibao-miniprogram/src/main/java/com/pusiqibao/controller/SpCategoryController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pusiqibao-miniprogram/src/main/java/com/pusiqibao/dao/SpCategoryDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pusiqibao-miniprogram/src/main/java/com/pusiqibao/entity/SpCategory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pusiqibao-miniprogram/src/main/java/com/pusiqibao/service/SpCategoryService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pusiqibao-miniprogram/src/main/java/com/pusiqibao/service/impl/SpCategoryServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pusiqibao-miniprogram/src/main/java/com/pusiqibao/util/TreeUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pusiqibao-miniprogram/src/main/resources/mapper/SpCategoryDao.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pusiqibao-miniprogram/src/main/java/com/pusiqibao/controller/SpAddressController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pusiqibao-miniprogram/src/main/java/com/pusiqibao/controller/SpAddressController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pusiqibao-miniprogram/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/pusiqibao-miniprogram/src/main/resources/application.yml" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,16 +32,16 @@
     <expand>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="lgt" type="feb32156:DbDataSourceImpl" />
+        <item name="pusiqibao@106.55.150.54" type="feb32156:DbDataSourceImpl" />
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="lgt" type="feb32156:DbDataSourceImpl" />
+        <item name="pusiqibao@106.55.150.54" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="lgt" type="feb32156:DbDataSourceImpl" />
+        <item name="pusiqibao@106.55.150.54" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="pusiqibao: schema" type="76f4a085:MysqlImplModel$Schema" />
       </path>
@@ -45,6 +55,9 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1qT9LcD0srqDuHBk47UnHYoq7HY" />
   <component name="PropertiesComponent">
     <property name="DatabaseDriversLRU" value="mysql" />
@@ -55,9 +68,12 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/pusiqibao-miniprogram/src/main/java/com/pusiqibao/config" />
+    <property name="settings.editor.selected.configurable" value="com.sjhy.plugin.ui.TypeMapperSetting" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.pusiqibao.util" />
+      <recent name="com.pusiqibao.entity" />
       <recent name="com.pusiqibao.config" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
@@ -110,7 +126,12 @@
     <option name="allServicesViewState">
       <serviceView>
         <treeState>
-          <expand />
+          <expand>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@316061d0" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+            </path>
+          </expand>
           <select />
         </treeState>
       </serviceView>
@@ -133,11 +154,23 @@
       <workItem from="1623201774253" duration="2652000" />
       <workItem from="1624002832099" duration="9815000" />
       <workItem from="1624262751767" duration="10587000" />
+      <workItem from="1624420262211" duration="16222000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <option name="LAST_COMMIT_MESSAGE" value="" />
