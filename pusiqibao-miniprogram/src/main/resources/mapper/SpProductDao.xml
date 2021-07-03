@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pusiqibao.dao.SpProductDao">
+
+    <resultMap type="com.pusiqibao.entity.SpProduct" id="SpProductMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="brandId" column="brand_id" jdbcType="INTEGER"/>
+        <result property="productCategoryId" column="product_category_id" jdbcType="INTEGER"/>
+        <result property="productAttributeCategoryId" column="product_attribute_category_id" jdbcType="INTEGER"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="imageurl" column="imageUrl" jdbcType="VARCHAR"/>
+        <result property="deleteStatus" column="delete_status" jdbcType="INTEGER"/>
+        <result property="publishStatus" column="publish_status" jdbcType="INTEGER"/>
+        <result property="recommandStatus" column="recommand_status" jdbcType="INTEGER"/>
+        <result property="sort" column="sort" jdbcType="INTEGER"/>
+        <result property="sale" column="sale" jdbcType="INTEGER"/>
+        <result property="price" column="price" jdbcType="NUMERIC"/>
+        <result property="promotionPrice" column="promotion_price" jdbcType="NUMERIC"/>
+        <result property="giftPoint" column="gift_point" jdbcType="INTEGER"/>
+        <result property="subTitle" column="sub_title" jdbcType="VARCHAR"/>
+        <result property="stock" column="stock" jdbcType="INTEGER"/>
+        <result property="lowStock" column="low_stock" jdbcType="INTEGER"/>
+        <result property="serviceIds" column="service_ids" jdbcType="VARCHAR"/>
+        <result property="albumPics" column="album_pics" jdbcType="VARCHAR"/>
+        <result property="detailMobileHtml" column="detail_mobile_html" jdbcType="VARCHAR"/>
+        <result property="promotionStartTime" column="promotion_start_time" jdbcType="TIMESTAMP"/>
+        <result property="promotionEndTime" column="promotion_end_time" jdbcType="TIMESTAMP"/>
+        <result property="promotionPerLimit" column="promotion_per_limit" jdbcType="INTEGER"/>
+        <result property="promotionType" column="promotion_type" jdbcType="INTEGER"/>
+        <result property="brandName" column="brand_name" jdbcType="VARCHAR"/>
+        <result property="productCategoryName" column="product_category_name" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="SpProductMap">
+        select
+          id, brand_id, product_category_id, product_attribute_category_id, name, imageUrl, delete_status, publish_status, recommand_status, sort, sale, price, promotion_price, gift_point, sub_title, stock, low_stock, service_ids, album_pics, detail_mobile_html, promotion_start_time, promotion_end_time, promotion_per_limit, promotion_type, brand_name, product_category_name
+        from pusiqibao.sp_product
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="SpProductMap">
+        select
+          id, brand_id, product_category_id, product_attribute_category_id, name, imageUrl, delete_status, publish_status, recommand_status, sort, sale, price, promotion_price, gift_point, sub_title, stock, low_stock, service_ids, album_pics, detail_mobile_html, promotion_start_time, promotion_end_time, promotion_per_limit, promotion_type, brand_name, product_category_name
+        from pusiqibao.sp_product
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="SpProductMap">
+        select
+        id, brand_id, product_category_id, product_attribute_category_id, name, imageUrl, delete_status, publish_status,
+        recommand_status, sort, sale, price, promotion_price, gift_point, sub_title, stock, low_stock, service_ids,
+        album_pics, detail_mobile_html, promotion_start_time, promotion_end_time, promotion_per_limit, promotion_type,
+        brand_name, product_category_name
+        from pusiqibao.sp_product
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="brandId != null">
+                and brand_id = #{brandId}
+            </if>
+            <if test="productCategoryId != null">
+                and product_category_id = #{productCategoryId}
+            </if>
+            <if test="productAttributeCategoryId != null">
+                and product_attribute_category_id = #{productAttributeCategoryId}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="imageurl != null and imageurl != ''">
+                and imageUrl = #{imageurl}
+            </if>
+            <if test="deleteStatus != null">
+                and delete_status = #{deleteStatus}
+            </if>
+            <if test="publishStatus != null">
+                and publish_status = #{publishStatus}
+            </if>
+            <if test="recommandStatus != null">
+                and recommand_status = #{recommandStatus}
+            </if>
+            <if test="sort != null">
+                and sort = #{sort}
+            </if>
+            <if test="sale != null">
+                and sale = #{sale}
+            </if>
+            <if test="price != null">
+                and price = #{price}
+            </if>
+            <if test="promotionPrice != null">
+                and promotion_price = #{promotionPrice}
+            </if>
+            <if test="giftPoint != null">
+                and gift_point = #{giftPoint}
+            </if>
+            <if test="subTitle != null and subTitle != ''">
+                and sub_title = #{subTitle}
+            </if>
+            <if test="stock != null">
+                and stock = #{stock}
+            </if>
+            <if test="lowStock != null">
+                and low_stock = #{lowStock}
+            </if>
+            <if test="serviceIds != null and serviceIds != ''">
+                and service_ids = #{serviceIds}
+            </if>
+            <if test="albumPics != null and albumPics != ''">
+                and album_pics = #{albumPics}
+            </if>
+            <if test="detailMobileHtml != null and detailMobileHtml != ''">
+                and detail_mobile_html = #{detailMobileHtml}
+            </if>
+            <if test="promotionStartTime != null">
+                and promotion_start_time = #{promotionStartTime}
+            </if>
+            <if test="promotionEndTime != null">
+                and promotion_end_time = #{promotionEndTime}
+            </if>
+            <if test="promotionPerLimit != null">
+                and promotion_per_limit = #{promotionPerLimit}
+            </if>
+            <if test="promotionType != null">
+                and promotion_type = #{promotionType}
+            </if>
+            <if test="brandName != null and brandName != ''">
+                and brand_name = #{brandName}
+            </if>
+            <if test="productCategoryName != null and productCategoryName != ''">
+                and product_category_name = #{productCategoryName}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into pusiqibao.sp_product(brand_id, product_category_id, product_attribute_category_id, name, imageUrl, delete_status, publish_status, recommand_status, sort, sale, price, promotion_price, gift_point, sub_title, stock, low_stock, service_ids, album_pics, detail_mobile_html, promotion_start_time, promotion_end_time, promotion_per_limit, promotion_type, brand_name, product_category_name)
+        values (#{brandId}, #{productCategoryId}, #{productAttributeCategoryId}, #{name}, #{imageurl}, #{deleteStatus}, #{publishStatus}, #{recommandStatus}, #{sort}, #{sale}, #{price}, #{promotionPrice}, #{giftPoint}, #{subTitle}, #{stock}, #{lowStock}, #{serviceIds}, #{albumPics}, #{detailMobileHtml}, #{promotionStartTime}, #{promotionEndTime}, #{promotionPerLimit}, #{promotionType}, #{brandName}, #{productCategoryName})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into pusiqibao.sp_product(brand_id, product_category_id, product_attribute_category_id, name, imageUrl,
+        delete_status, publish_status, recommand_status, sort, sale, price, promotion_price, gift_point, sub_title,
+        stock, low_stock, service_ids, album_pics, detail_mobile_html, promotion_start_time, promotion_end_time,
+        promotion_per_limit, promotion_type, brand_name, product_category_name)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.brandId}, #{entity.productCategoryId}, #{entity.productAttributeCategoryId}, #{entity.name},
+            #{entity.imageurl}, #{entity.deleteStatus}, #{entity.publishStatus}, #{entity.recommandStatus},
+            #{entity.sort}, #{entity.sale}, #{entity.price}, #{entity.promotionPrice}, #{entity.giftPoint},
+            #{entity.subTitle}, #{entity.stock}, #{entity.lowStock}, #{entity.serviceIds}, #{entity.albumPics},
+            #{entity.detailMobileHtml}, #{entity.promotionStartTime}, #{entity.promotionEndTime},
+            #{entity.promotionPerLimit}, #{entity.promotionType}, #{entity.brandName}, #{entity.productCategoryName})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into pusiqibao.sp_product(brand_id, product_category_id, product_attribute_category_id, name, imageUrl,
+        delete_status, publish_status, recommand_status, sort, sale, price, promotion_price, gift_point, sub_title,
+        stock, low_stock, service_ids, album_pics, detail_mobile_html, promotion_start_time, promotion_end_time,
+        promotion_per_limit, promotion_type, brand_name, product_category_name)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.brandId}, #{entity.productCategoryId}, #{entity.productAttributeCategoryId}, #{entity.name},
+            #{entity.imageurl}, #{entity.deleteStatus}, #{entity.publishStatus}, #{entity.recommandStatus},
+            #{entity.sort}, #{entity.sale}, #{entity.price}, #{entity.promotionPrice}, #{entity.giftPoint},
+            #{entity.subTitle}, #{entity.stock}, #{entity.lowStock}, #{entity.serviceIds}, #{entity.albumPics},
+            #{entity.detailMobileHtml}, #{entity.promotionStartTime}, #{entity.promotionEndTime},
+            #{entity.promotionPerLimit}, #{entity.promotionType}, #{entity.brandName}, #{entity.productCategoryName})
+        </foreach>
+        on duplicate key update
+        brand_id = values(brand_id) , product_category_id = values(product_category_id) , product_attribute_category_id
+        = values(product_attribute_category_id) , name = values(name) , imageUrl = values(imageUrl) , delete_status =
+        values(delete_status) , publish_status = values(publish_status) , recommand_status = values(recommand_status) ,
+        sort = values(sort) , sale = values(sale) , price = values(price) , promotion_price = values(promotion_price) ,
+        gift_point = values(gift_point) , sub_title = values(sub_title) , stock = values(stock) , low_stock =
+        values(low_stock) , service_ids = values(service_ids) , album_pics = values(album_pics) , detail_mobile_html =
+        values(detail_mobile_html) , promotion_start_time = values(promotion_start_time) , promotion_end_time =
+        values(promotion_end_time) , promotion_per_limit = values(promotion_per_limit) , promotion_type =
+        values(promotion_type) , brand_name = values(brand_name) , product_category_name = values(product_category_name)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update pusiqibao.sp_product
+        <set>
+            <if test="brandId != null">
+                brand_id = #{brandId},
+            </if>
+            <if test="productCategoryId != null">
+                product_category_id = #{productCategoryId},
+            </if>
+            <if test="productAttributeCategoryId != null">
+                product_attribute_category_id = #{productAttributeCategoryId},
+            </if>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="imageurl != null and imageurl != ''">
+                imageUrl = #{imageurl},
+            </if>
+            <if test="deleteStatus != null">
+                delete_status = #{deleteStatus},
+            </if>
+            <if test="publishStatus != null">
+                publish_status = #{publishStatus},
+            </if>
+            <if test="recommandStatus != null">
+                recommand_status = #{recommandStatus},
+            </if>
+            <if test="sort != null">
+                sort = #{sort},
+            </if>
+            <if test="sale != null">
+                sale = #{sale},
+            </if>
+            <if test="price != null">
+                price = #{price},
+            </if>
+            <if test="promotionPrice != null">
+                promotion_price = #{promotionPrice},
+            </if>
+            <if test="giftPoint != null">
+                gift_point = #{giftPoint},
+            </if>
+            <if test="subTitle != null and subTitle != ''">
+                sub_title = #{subTitle},
+            </if>
+            <if test="stock != null">
+                stock = #{stock},
+            </if>
+            <if test="lowStock != null">
+                low_stock = #{lowStock},
+            </if>
+            <if test="serviceIds != null and serviceIds != ''">
+                service_ids = #{serviceIds},
+            </if>
+            <if test="albumPics != null and albumPics != ''">
+                album_pics = #{albumPics},
+            </if>
+            <if test="detailMobileHtml != null and detailMobileHtml != ''">
+                detail_mobile_html = #{detailMobileHtml},
+            </if>
+            <if test="promotionStartTime != null">
+                promotion_start_time = #{promotionStartTime},
+            </if>
+            <if test="promotionEndTime != null">
+                promotion_end_time = #{promotionEndTime},
+            </if>
+            <if test="promotionPerLimit != null">
+                promotion_per_limit = #{promotionPerLimit},
+            </if>
+            <if test="promotionType != null">
+                promotion_type = #{promotionType},
+            </if>
+            <if test="brandName != null and brandName != ''">
+                brand_name = #{brandName},
+            </if>
+            <if test="productCategoryName != null and productCategoryName != ''">
+                product_category_name = #{productCategoryName},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from pusiqibao.sp_product where id = #{id}
+    </delete>
+
+</mapper>

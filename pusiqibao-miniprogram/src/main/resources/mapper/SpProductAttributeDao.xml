@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pusiqibao.dao.SpProductAttributeDao">
+
+    <resultMap type="com.pusiqibao.entity.SpProductAttribute" id="SpProductAttributeMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="productAttributeCategoryId" column="product_attribute_category_id" jdbcType="INTEGER"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="selectType" column="select_type" jdbcType="INTEGER"/>
+        <result property="inputType" column="input_type" jdbcType="INTEGER"/>
+        <result property="inputList" column="input_list" jdbcType="VARCHAR"/>
+        <result property="sort" column="sort" jdbcType="INTEGER"/>
+        <result property="filterType" column="filter_type" jdbcType="INTEGER"/>
+        <result property="searchType" column="search_type" jdbcType="INTEGER"/>
+        <result property="relatedStatus" column="related_status" jdbcType="INTEGER"/>
+        <result property="handAddStatus" column="hand_add_status" jdbcType="INTEGER"/>
+        <result property="type" column="type" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="SpProductAttributeMap">
+        select
+          id, product_attribute_category_id, name, select_type, input_type, input_list, sort, filter_type, search_type, related_status, hand_add_status, type
+        from pusiqibao.sp_product_attribute
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="SpProductAttributeMap">
+        select
+          id, product_attribute_category_id, name, select_type, input_type, input_list, sort, filter_type, search_type, related_status, hand_add_status, type
+        from pusiqibao.sp_product_attribute
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="SpProductAttributeMap">
+        select
+        id, product_attribute_category_id, name, select_type, input_type, input_list, sort, filter_type, search_type,
+        related_status, hand_add_status, type
+        from pusiqibao.sp_product_attribute
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="productAttributeCategoryId != null">
+                and product_attribute_category_id = #{productAttributeCategoryId}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="selectType != null">
+                and select_type = #{selectType}
+            </if>
+            <if test="inputType != null">
+                and input_type = #{inputType}
+            </if>
+            <if test="inputList != null and inputList != ''">
+                and input_list = #{inputList}
+            </if>
+            <if test="sort != null">
+                and sort = #{sort}
+            </if>
+            <if test="filterType != null">
+                and filter_type = #{filterType}
+            </if>
+            <if test="searchType != null">
+                and search_type = #{searchType}
+            </if>
+            <if test="relatedStatus != null">
+                and related_status = #{relatedStatus}
+            </if>
+            <if test="handAddStatus != null">
+                and hand_add_status = #{handAddStatus}
+            </if>
+            <if test="type != null">
+                and type = #{type}
+            </if>
+        </where>
+    </select>
+    <select id="selectOneDetail"
+            resultMap="SpProductAttributeMap">
+        SELECT
+	id, product_attribute_category_id, name, select_type, input_type, input_list, sort, filter_type, search_type, related_status, hand_add_status, type
+FROM
+	sp_product_attribute
+
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into pusiqibao.sp_product_attribute(product_attribute_category_id, name, select_type, input_type, input_list, sort, filter_type, search_type, related_status, hand_add_status, type)
+        values (#{productAttributeCategoryId}, #{name}, #{selectType}, #{inputType}, #{inputList}, #{sort}, #{filterType}, #{searchType}, #{relatedStatus}, #{handAddStatus}, #{type})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into pusiqibao.sp_product_attribute(product_attribute_category_id, name, select_type, input_type,
+        input_list, sort, filter_type, search_type, related_status, hand_add_status, type)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.productAttributeCategoryId}, #{entity.name}, #{entity.selectType}, #{entity.inputType},
+            #{entity.inputList}, #{entity.sort}, #{entity.filterType}, #{entity.searchType}, #{entity.relatedStatus},
+            #{entity.handAddStatus}, #{entity.type})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into pusiqibao.sp_product_attribute(product_attribute_category_id, name, select_type, input_type,
+        input_list, sort, filter_type, search_type, related_status, hand_add_status, type)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.productAttributeCategoryId}, #{entity.name}, #{entity.selectType}, #{entity.inputType},
+            #{entity.inputList}, #{entity.sort}, #{entity.filterType}, #{entity.searchType}, #{entity.relatedStatus},
+            #{entity.handAddStatus}, #{entity.type})
+        </foreach>
+        on duplicate key update
+        product_attribute_category_id = values(product_attribute_category_id) , name = values(name) , select_type =
+        values(select_type) , input_type = values(input_type) , input_list = values(input_list) , sort = values(sort) ,
+        filter_type = values(filter_type) , search_type = values(search_type) , related_status = values(related_status)
+        , hand_add_status = values(hand_add_status) , type = values(type)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update pusiqibao.sp_product_attribute
+        <set>
+            <if test="productAttributeCategoryId != null">
+                product_attribute_category_id = #{productAttributeCategoryId},
+            </if>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="selectType != null">
+                select_type = #{selectType},
+            </if>
+            <if test="inputType != null">
+                input_type = #{inputType},
+            </if>
+            <if test="inputList != null and inputList != ''">
+                input_list = #{inputList},
+            </if>
+            <if test="sort != null">
+                sort = #{sort},
+            </if>
+            <if test="filterType != null">
+                filter_type = #{filterType},
+            </if>
+            <if test="searchType != null">
+                search_type = #{searchType},
+            </if>
+            <if test="relatedStatus != null">
+                related_status = #{relatedStatus},
+            </if>
+            <if test="handAddStatus != null">
+                hand_add_status = #{handAddStatus},
+            </if>
+            <if test="type != null">
+                type = #{type},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from pusiqibao.sp_product_attribute where id = #{id}
+    </delete>
+
+</mapper>

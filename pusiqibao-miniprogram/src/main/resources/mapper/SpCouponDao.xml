@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pusiqibao.dao.SpCouponDao">
+
+    <resultMap type="com.pusiqibao.entity.SpCoupon" id="SpCouponMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="type" column="type" jdbcType="INTEGER"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="platform" column="platform" jdbcType="INTEGER"/>
+        <result property="count" column="count" jdbcType="INTEGER"/>
+        <result property="amount" column="amount" jdbcType="NUMERIC"/>
+        <result property="perLimit" column="per_limit" jdbcType="INTEGER"/>
+        <result property="minPoint" column="min_point" jdbcType="NUMERIC"/>
+        <result property="startTime" column="start_time" jdbcType="TIMESTAMP"/>
+        <result property="endTime" column="end_time" jdbcType="TIMESTAMP"/>
+        <result property="useType" column="use_type" jdbcType="INTEGER"/>
+        <result property="note" column="note" jdbcType="VARCHAR"/>
+        <result property="publishCount" column="publish_count" jdbcType="INTEGER"/>
+        <result property="useCount" column="use_count" jdbcType="INTEGER"/>
+        <result property="receiveCount" column="receive_count" jdbcType="INTEGER"/>
+        <result property="enableTime" column="enable_time" jdbcType="TIMESTAMP"/>
+        <result property="code" column="code" jdbcType="VARCHAR"/>
+        <result property="memberLevel" column="member_level" jdbcType="INTEGER"/>
+        <result property="couponTypeId" column="coupon_type_id" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="SpCouponMap">
+        select
+          id, type, name, platform, count, amount, per_limit, min_point, start_time, end_time, use_type, note, publish_count, use_count, receive_count, enable_time, code, member_level, coupon_type_id
+        from pusiqibao.sp_coupon
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="SpCouponMap">
+        select
+          id, type, name, platform, count, amount, per_limit, min_point, start_time, end_time, use_type, note, publish_count, use_count, receive_count, enable_time, code, member_level, coupon_type_id
+        from pusiqibao.sp_coupon
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="SpCouponMap">
+        select
+        id, type, name, platform, count, amount, per_limit, min_point, start_time, end_time, use_type, note,
+        publish_count, use_count, receive_count, enable_time, code, member_level, coupon_type_id
+        from pusiqibao.sp_coupon
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="type != null">
+                and type = #{type}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="platform != null">
+                and platform = #{platform}
+            </if>
+            <if test="count != null">
+                and count = #{count}
+            </if>
+            <if test="amount != null">
+                and amount = #{amount}
+            </if>
+            <if test="perLimit != null">
+                and per_limit = #{perLimit}
+            </if>
+            <if test="minPoint != null">
+                and min_point = #{minPoint}
+            </if>
+            <if test="startTime != null">
+                and start_time = #{startTime}
+            </if>
+            <if test="endTime != null">
+                and end_time = #{endTime}
+            </if>
+            <if test="useType != null">
+                and use_type = #{useType}
+            </if>
+            <if test="note != null and note != ''">
+                and note = #{note}
+            </if>
+            <if test="publishCount != null">
+                and publish_count = #{publishCount}
+            </if>
+            <if test="useCount != null">
+                and use_count = #{useCount}
+            </if>
+            <if test="receiveCount != null">
+                and receive_count = #{receiveCount}
+            </if>
+            <if test="enableTime != null">
+                and enable_time = #{enableTime}
+            </if>
+            <if test="code != null and code != ''">
+                and code = #{code}
+            </if>
+            <if test="memberLevel != null">
+                and member_level = #{memberLevel}
+            </if>
+            <if test="couponTypeId != null">
+                and coupon_type_id = #{couponTypeId}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into pusiqibao.sp_coupon(type, name, platform, count, amount, per_limit, min_point, start_time, end_time, use_type, note, publish_count, use_count, receive_count, enable_time, code, member_level, coupon_type_id)
+        values (#{type}, #{name}, #{platform}, #{count}, #{amount}, #{perLimit}, #{minPoint}, #{startTime}, #{endTime}, #{useType}, #{note}, #{publishCount}, #{useCount}, #{receiveCount}, #{enableTime}, #{code}, #{memberLevel}, #{couponTypeId})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into pusiqibao.sp_coupon(type, name, platform, count, amount, per_limit, min_point, start_time, end_time,
+        use_type, note, publish_count, use_count, receive_count, enable_time, code, member_level, coupon_type_id)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.type}, #{entity.name}, #{entity.platform}, #{entity.count}, #{entity.amount}, #{entity.perLimit},
+            #{entity.minPoint}, #{entity.startTime}, #{entity.endTime}, #{entity.useType}, #{entity.note},
+            #{entity.publishCount}, #{entity.useCount}, #{entity.receiveCount}, #{entity.enableTime}, #{entity.code},
+            #{entity.memberLevel}, #{entity.couponTypeId})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into pusiqibao.sp_coupon(type, name, platform, count, amount, per_limit, min_point, start_time, end_time,
+        use_type, note, publish_count, use_count, receive_count, enable_time, code, member_level, coupon_type_id)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.type}, #{entity.name}, #{entity.platform}, #{entity.count}, #{entity.amount}, #{entity.perLimit},
+            #{entity.minPoint}, #{entity.startTime}, #{entity.endTime}, #{entity.useType}, #{entity.note},
+            #{entity.publishCount}, #{entity.useCount}, #{entity.receiveCount}, #{entity.enableTime}, #{entity.code},
+            #{entity.memberLevel}, #{entity.couponTypeId})
+        </foreach>
+        on duplicate key update
+        type = values(type) , name = values(name) , platform = values(platform) , count = values(count) , amount =
+        values(amount) , per_limit = values(per_limit) , min_point = values(min_point) , start_time = values(start_time)
+        , end_time = values(end_time) , use_type = values(use_type) , note = values(note) , publish_count =
+        values(publish_count) , use_count = values(use_count) , receive_count = values(receive_count) , enable_time =
+        values(enable_time) , code = values(code) , member_level = values(member_level) , coupon_type_id =
+        values(coupon_type_id)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update pusiqibao.sp_coupon
+        <set>
+            <if test="type != null">
+                type = #{type},
+            </if>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="platform != null">
+                platform = #{platform},
+            </if>
+            <if test="count != null">
+                count = #{count},
+            </if>
+            <if test="amount != null">
+                amount = #{amount},
+            </if>
+            <if test="perLimit != null">
+                per_limit = #{perLimit},
+            </if>
+            <if test="minPoint != null">
+                min_point = #{minPoint},
+            </if>
+            <if test="startTime != null">
+                start_time = #{startTime},
+            </if>
+            <if test="endTime != null">
+                end_time = #{endTime},
+            </if>
+            <if test="useType != null">
+                use_type = #{useType},
+            </if>
+            <if test="note != null and note != ''">
+                note = #{note},
+            </if>
+            <if test="publishCount != null">
+                publish_count = #{publishCount},
+            </if>
+            <if test="useCount != null">
+                use_count = #{useCount},
+            </if>
+            <if test="receiveCount != null">
+                receive_count = #{receiveCount},
+            </if>
+            <if test="enableTime != null">
+                enable_time = #{enableTime},
+            </if>
+            <if test="code != null and code != ''">
+                code = #{code},
+            </if>
+            <if test="memberLevel != null">
+                member_level = #{memberLevel},
+            </if>
+            <if test="couponTypeId != null">
+                coupon_type_id = #{couponTypeId},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from pusiqibao.sp_coupon where id = #{id}
+    </delete>
+
+</mapper>

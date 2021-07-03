@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pusiqibao.dao.SpSkuStockDao">
+
+    <resultMap type="com.pusiqibao.entity.SpSkuStock" id="SpSkuStockMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="productId" column="product_id" jdbcType="INTEGER"/>
+        <result property="skuCode" column="sku_code" jdbcType="VARCHAR"/>
+        <result property="price" column="price" jdbcType="NUMERIC"/>
+        <result property="stock" column="stock" jdbcType="INTEGER"/>
+        <result property="lowStock" column="low_stock" jdbcType="INTEGER"/>
+        <result property="pic" column="pic" jdbcType="VARCHAR"/>
+        <result property="sale" column="sale" jdbcType="INTEGER"/>
+        <result property="promotionPrice" column="promotion_price" jdbcType="NUMERIC"/>
+        <result property="lockStock" column="lock_stock" jdbcType="INTEGER"/>
+        <result property="spData" column="sp_data" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="SpSkuStockMap">
+        select
+          id, product_id, sku_code, price, stock, low_stock, pic, sale, promotion_price, lock_stock, sp_data
+        from pusiqibao.sp_sku_stock
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="SpSkuStockMap">
+        select
+          id, product_id, sku_code, price, stock, low_stock, pic, sale, promotion_price, lock_stock, sp_data
+        from pusiqibao.sp_sku_stock
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="SpSkuStockMap">
+        select
+        id, product_id, sku_code, price, stock, low_stock, pic, sale, promotion_price, lock_stock, sp_data
+        from pusiqibao.sp_sku_stock
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="productId != null">
+                and product_id = #{productId}
+            </if>
+            <if test="skuCode != null and skuCode != ''">
+                and sku_code = #{skuCode}
+            </if>
+            <if test="price != null">
+                and price = #{price}
+            </if>
+            <if test="stock != null">
+                and stock = #{stock}
+            </if>
+            <if test="lowStock != null">
+                and low_stock = #{lowStock}
+            </if>
+            <if test="pic != null and pic != ''">
+                and pic = #{pic}
+            </if>
+            <if test="sale != null">
+                and sale = #{sale}
+            </if>
+            <if test="promotionPrice != null">
+                and promotion_price = #{promotionPrice}
+            </if>
+            <if test="lockStock != null">
+                and lock_stock = #{lockStock}
+            </if>
+            <if test="spData != null and spData != ''">
+                and sp_data = #{spData}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into pusiqibao.sp_sku_stock(product_id, sku_code, price, stock, low_stock, pic, sale, promotion_price, lock_stock, sp_data)
+        values (#{productId}, #{skuCode}, #{price}, #{stock}, #{lowStock}, #{pic}, #{sale}, #{promotionPrice}, #{lockStock}, #{spData})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into pusiqibao.sp_sku_stock(product_id, sku_code, price, stock, low_stock, pic, sale, promotion_price,
+        lock_stock, sp_data)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.productId}, #{entity.skuCode}, #{entity.price}, #{entity.stock}, #{entity.lowStock},
+            #{entity.pic}, #{entity.sale}, #{entity.promotionPrice}, #{entity.lockStock}, #{entity.spData})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into pusiqibao.sp_sku_stock(product_id, sku_code, price, stock, low_stock, pic, sale, promotion_price,
+        lock_stock, sp_data)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.productId}, #{entity.skuCode}, #{entity.price}, #{entity.stock}, #{entity.lowStock},
+            #{entity.pic}, #{entity.sale}, #{entity.promotionPrice}, #{entity.lockStock}, #{entity.spData})
+        </foreach>
+        on duplicate key update
+        product_id = values(product_id) , sku_code = values(sku_code) , price = values(price) , stock = values(stock) ,
+        low_stock = values(low_stock) , pic = values(pic) , sale = values(sale) , promotion_price =
+        values(promotion_price) , lock_stock = values(lock_stock) , sp_data = values(sp_data)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update pusiqibao.sp_sku_stock
+        <set>
+            <if test="productId != null">
+                product_id = #{productId},
+            </if>
+            <if test="skuCode != null and skuCode != ''">
+                sku_code = #{skuCode},
+            </if>
+            <if test="price != null">
+                price = #{price},
+            </if>
+            <if test="stock != null">
+                stock = #{stock},
+            </if>
+            <if test="lowStock != null">
+                low_stock = #{lowStock},
+            </if>
+            <if test="pic != null and pic != ''">
+                pic = #{pic},
+            </if>
+            <if test="sale != null">
+                sale = #{sale},
+            </if>
+            <if test="promotionPrice != null">
+                promotion_price = #{promotionPrice},
+            </if>
+            <if test="lockStock != null">
+                lock_stock = #{lockStock},
+            </if>
+            <if test="spData != null and spData != ''">
+                sp_data = #{spData},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from pusiqibao.sp_sku_stock where id = #{id}
+    </delete>
+
+</mapper>
