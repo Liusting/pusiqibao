@@ -1,6 +1,9 @@
 package com.pusiqibao.util;
 
 import com.alibaba.fastjson.JSONObject;
+import com.pusiqibao.config.WXPayConfig;
+import com.wechat.pay.contrib.apache.httpclient.util.PemUtil;
+import okhttp3.HttpUrl;
 import org.apache.commons.httpclient.NameValuePair;
 import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.http.HttpEntity;
@@ -14,9 +17,15 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.security.*;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.PKCS8EncodedKeySpec;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.*;
 
 
 public class HttpRequest {
@@ -326,6 +335,108 @@ public class HttpRequest {
             HttpClientBuilder httpClientBuilder = HttpClientBuilder.create();
             CloseableHttpClient httpClient = httpClientBuilder.build();
             HttpResponse httpResponse = httpClient.execute(httpGet);
+            // 响应状态
+            if (httpResponse.getStatusLine().getStatusCode() == 200) {
+                HttpEntity entity = httpResponse.getEntity();
+                return EntityUtils.toString(entity, "UTF-8");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "error";
+    }
+
+
+
+    private static String sign(byte[] message) throws NoSuchAlgorithmException, IOException, SignatureException, InvalidKeyException {
+        Signature sign = Signature.getInstance("SHA256withRSA");
+        String privateKey = "MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCk4BLDPQ0hdFrS\n" +
+                "MBFp153UXkbPNXH+XPBrY49PlluvAesrguVoyvNKyZLiU5aW0vcaUg1LQjwsr38P\n" +
+                "DkDM4qzvPF8euDukkgTMBrB1FtINJykVa4If1pFKYkcvnRzD2iQ3dha2dNlAqjwb\n" +
+                "JOtnbgvAZIi/uKKQrubGDRK1bgKYfND2WCSdAdmMrObjAbIj8pJ+BKjqEml0O8Fi\n" +
+                "RUxAxN+qoYYVGg3piOPsfj6SwRFdpqAVXX08y++zFVF13iHE5OdEPCFHceUkE+pC\n" +
+                "lIwf2q7PW3fUokTdnnCoz52ao2NcGENudDOsgxDYeGtR6RH6V4Bqxekg51z724V7\n" +
+                "cQgPsdFNAgMBAAECggEAFE/uv9LjrT1yevalDo8byLActSZ2dsnobLKFU17IyNTJ\n" +
+                "rkCgFrr6IjqXN/7oTIiNHNcDAESWuUKdurMc1KEQgSDE7znvTyUWJjSkxKgdFLXA\n" +
+                "X/0wuM9scueMsZb/ljlnwNVxkuTuZwMSCJ4RylpKZFd+aXBLxttlXvz5UxTMiRCU\n" +
+                "28kEx5wpvwya1GQxhS7xAdRSOEHZf3W5RYRCB4KHavYFiI6xF6PjHznIqsbL5y8K\n" +
+                "w8gKK5agfi7K/U6I/lzkhSHysF22J+i79HetMsEbDHtfOB5+2v2rBteI3jb/hrag\n" +
+                "Zm6NqwK7w0k2u0voDJJdt1vZQ6+jf4kCyAQKMJtdGQKBgQDWEeQVwCVzOxW454Uy\n" +
+                "5N8zC3WTg+m1FgBxxFJZYRU9HvPRI62OfRiXWTv2i7fpdrO/6qWnpC9DLtrtr2Wc\n" +
+                "8bc7d9ROBZ5zt0Crs+GTAJnabdzGRvEV4jAIupBlU3aUZ7yQyhCtHJlUrX7EHl44\n" +
+                "afCJnNPz+rvaQRngLBzh/PB63wKBgQDFK2q35yrczMqs107n1bs43iEfhuDNL0Rb\n" +
+                "HnCFjm+O1xhKAnmSb+U1lZOUrTIpragMqDARV+ewfGMw2ePugbIdHhE1SMnqHOVi\n" +
+                "icO5kXOA0KUx6xvw2nCPvPT4zyM9vzaAk0ziRZRrYOi4n7SYvYoWAznpfuuNaL8p\n" +
+                "nwNqusBlUwKBgGNwXh4Iap0TZizFRyd0D4ZbnVtP3IEk3kH6qzIfmckRlrqgsx9M\n" +
+                "Vt7/MY5+KolFfYv5yMeNyfKQUlw0rKPx2GbEbBduHsOr7VuVLISns9A2Vma4T4cV\n" +
+                "0bBMUYTv91ZKtdogMwznCwa9rPQXEzdrZrPV6NMdtqNUuFtcwnHrmB3LAoGBALJQ\n" +
+                "r7UeJY+Gzo0+M6hLjYTCr2YZz1kBtGpLvyuqQ44FTXwxfM1I0RyC5/OAJ2u2F9NK\n" +
+                "kB4/R9Q+yl410IO1W+YleR6dc658758MRKygtLr890mL/br3cvErzMjwXEjNk3b4\n" +
+                "wIGqt63c+Ntv5B523FlIFansFQ/QeYIkwyxVNQbtAoGAavVxTzGLo2lPJqLaeco6\n" +
+                "wpi4oj85TNCcjbYJC78DKXknHr5qdaIp8yqgOF9JQox3wlolnAwJxTJmDIt73rpj\n" +
+                "4OEFOOBTOWyAFv/Goi1jVqsXjrcbSwT+5ZkXfmaQZ04k58NJK3Ltptp+sAGA1o6e\n" +
+                "Zhu/47enkH17n2NwUi3v9sQ=";
+        PrivateKey merchantPrivateKey = PemUtil
+                .loadPrivateKey(new ByteArrayInputStream(privateKey.getBytes("utf-8")));
+        sign.initSign(merchantPrivateKey);
+        sign.update(message);
+
+        return Base64.getEncoder().encodeToString(sign.sign());
+    }
+
+
+
+    static String buildMessage(String method, HttpUrl url, long timestamp, String nonceStr, String body) {
+        String canonicalUrl = url.encodedPath();
+        if (url.encodedQuery() != null) {
+            canonicalUrl += "?" + url.encodedQuery();
+        }
+
+
+        System.err.println(method + "\n"
+                + canonicalUrl + "\n"
+                + timestamp + "\n"
+                + nonceStr + "\n"
+                + body + "\n");
+        return method + "\n"
+                + canonicalUrl + "\n"
+                + timestamp + "\n"
+                + nonceStr + "\n"
+                + body + "\n";
+    }
+
+
+    public static PrivateKey getPrivateKey(String filename) throws IOException {
+
+        String content = new String(Files.readAllBytes(Paths.get(filename)), "utf-8");
+        try {
+            String privateKey = content.replace("-----BEGIN PRIVATE KEY-----", "")
+                    .replace("-----END PRIVATE KEY-----", "")
+                    .replaceAll("\\s+", "");
+
+            KeyFactory kf = KeyFactory.getInstance("RSA");
+            return kf.generatePrivate(
+                    new PKCS8EncodedKeySpec(Base64.getDecoder().decode(privateKey)));
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException("当前Java环境不支持RSA", e);
+        } catch (InvalidKeySpecException e) {
+            throw new RuntimeException("无效的密钥格式");
+        }
+    }
+
+    public static String doGet1(String url, String body) {
+        try {
+            //创建get请求
+            HttpGet httpGet = new HttpGet(url);
+
+            httpGet.setHeader("Authorization",body);
+            httpGet.setHeader("Accept", "application/json");
+            httpGet.setHeader("User-Agent", "https://zh.wikipedia.org/wiki/User_agent");
+            HttpClientBuilder httpClientBuilder = HttpClientBuilder.create();
+            CloseableHttpClient httpClient = httpClientBuilder.build();
+            HttpResponse httpResponse = httpClient.execute(httpGet);
+
+            System.out.println(httpResponse.getStatusLine().getStatusCode());
             // 响应状态
             if (httpResponse.getStatusLine().getStatusCode() == 200) {
                 HttpEntity entity = httpResponse.getEntity();
