@@ -15,13 +15,16 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.util.EntityUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.security.*;
@@ -34,6 +37,30 @@ import java.util.List;
 
 @RestController
 public class TestController {
+    @Autowired
+    ResourceLoader resourceLoader;
+
+    @GetMapping("/")
+    public String JsSdk(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        Resource resource = resourceLoader.getResource("classpath:MP_verify_tXAwXbIzOvKuImm3.txt");
+        InputStream is = resource.getInputStream();
+        InputStreamReader isr = new InputStreamReader(is);
+        StringBuilder result = new StringBuilder();
+        try{
+            BufferedReader br = new BufferedReader(isr);//构造一个BufferedReader类来读取文件
+            String s = null;
+            while((s = br.readLine())!=null){//使用readLine方法，一次读一行
+                result.append(System.lineSeparator()+s);
+            }
+            br.close();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return result.toString();
+    }
+
+
+
     @GetMapping("/text")
     @ApiOperation("测试")
     public String gh() throws IOException {

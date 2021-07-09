@@ -23,6 +23,7 @@ import com.wechat.pay.contrib.apache.httpclient.util.RsaCryptoUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.SneakyThrows;
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -150,7 +151,7 @@ public class WeiXinController {
 
     @GetMapping("/refunds")
     @ApiOperation("申请交易账单API")
-    public JSONObject getRefunds(String out_trade_no) throws IOException, URISyntaxException, CertificateException {
+    public JSONObject getRefunds(String out_trade_no) throws Exception {
         String date = "2021-07-08";
         String url = "https://api.mch.weixin.qq.com/v3/bill/fundflowbill?bill_date=2021-07-08";
 
@@ -178,13 +179,39 @@ public class WeiXinController {
         String bodyAsString = EntityUtils.toString(response.getEntity());
 
         JSONObject jsonObject1 = JSONObject.parseObject(bodyAsString);
+        String download_url = jsonObject1.getString("download_url");
+
+
+        //创建httpclient对象
+        CloseableHttpClient client = HttpClients.createDefault();
+        //创建post方式请求对象
+        HttpPost httpPost = new HttpPost(download_url);
+
+        String post = WxPayV3Util.getToken("POST", HttpUrl.parse(download_url), WXPayConfig.mch_id, WXPayConfig.merchantSerialNumber, "F:\\IdeaProjects\\pusiqibao\\pusiqibao-miniprogram\\src\\main\\resources\\cert\\apiclient_key.pem", "");
+        //设置header信息
+        //指定报文头【Content-type】、【User-Agent】
+        httpPost.setHeader("Content-type", "application/json");
+        httpPost.setHeader("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)");
+        httpPost.setHeader("Accept", "application/json");
+        httpPost.setHeader("Authorization",
+                "WECHATPAY2-SHA256-RSA2048 " + post);
+
+        //执行请求操作，并拿到结果（同步阻塞）
+        CloseableHttpResponse response1 = client.execute(httpPost);
+
+        HttpEntity entity = response1.getEntity();
+        //按指定编码转换结果实体为String类型
+        String body = EntityUtils.toString(entity, "UTF-8");
+
+        System.out.println(body);
+
         return jsonObject1;
     }
 
 
     @GetMapping("/getTradeBill")
     @ApiOperation("申请交易账单API")
-    public JSONObject getTradeBill(String out_trade_no) throws IOException, URISyntaxException, CertificateException {
+    public JSONObject getTradeBill(String out_trade_no,HttpServletRequest request,HttpServletResponse servletResponse) throws Exception {
         String date = "2021-07-08";
         String url = "https://api.mch.weixin.qq.com/v3/bill/fundflowbill?bill_date=2021-07-08";
 
@@ -212,7 +239,49 @@ public class WeiXinController {
         String bodyAsString = EntityUtils.toString(response.getEntity());
 
         JSONObject jsonObject1 = JSONObject.parseObject(bodyAsString);
+
+        String download_url = jsonObject1.getString("download_url");
+
+
+        //创建httpclient对象
+        CloseableHttpClient client = HttpClients.createDefault();
+        //创建post方式请求对象
+        HttpGet httpGet1 = new HttpGet(download_url);
+
+        String post = WxPayV3Util.getToken("GET", HttpUrl.parse(download_url), WXPayConfig.mch_id, WXPayConfig.merchantSerialNumber, "F:\\IdeaProjects\\pusiqibao\\pusiqibao-miniprogram\\src\\main\\resources\\cert\\apiclient_key.pem", "");
+        //设置header信息
+        //指定报文头【Content-type】、【User-Agent】
+        httpGet1.setHeader("Content-type", "application/json");
+        httpGet1.setHeader("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)");
+        httpGet1.setHeader("Accept", "application/json");
+        httpGet1.setHeader("Authorization",
+                "WECHATPAY2-SHA256-RSA2048 " + post);
+
+        //执行请求操作，并拿到结果（同步阻塞）
+        CloseableHttpResponse response1 = client.execute(httpGet1);
+
+        HttpEntity responseEntity = response1.getEntity();
+        InputStream inputStream = null;
+        BufferedInputStream buf = null;
+        OutputStream out = null;
+        inputStream = responseEntity.getContent();
+        out = servletResponse.getOutputStream();
+        servletResponse.setContentType("application/x-download");
+        buf = new BufferedInputStream(inputStream);
+
+
+
+        out.close();
+        buf.close();
+
+        HttpEntity entity = response1.getEntity();
+        //按指定编码转换结果实体为String类型
+        String body = EntityUtils.toString(entity, "UTF-8");
+
+        System.out.println(body);
+
         return jsonObject1;
+
     }
 
 
@@ -259,7 +328,7 @@ public class WeiXinController {
         JSONObject jsonObject = JSON.parseObject(res);
 
         String sessionKey = jsonObject.getString("session_key");
-        String hh = AESForWeixinGetPhoneNumber.decryptWeChatData(sessionKey,msg.getIv(),msg.getEncryptedData());
+        String hh = AESForWeixinGetPhoneNumber.decryptWeChatData(sessionKey, msg.getIv(), msg.getEncryptedData());
         JSONObject jsonObject1 = JSONObject.parseObject(hh);
         return jsonObject1;
     }
@@ -280,7 +349,7 @@ public class WeiXinController {
         JSONObject jsonObject = JSON.parseObject(res);
 
         String sessionKey = jsonObject.getString("session_key");
-        String hh = AESForWeixinGetPhoneNumber.decryptWeChatData(sessionKey,msg.getIv(),msg.getEncryptedData());
+        String hh = AESForWeixinGetPhoneNumber.decryptWeChatData(sessionKey, msg.getIv(), msg.getEncryptedData());
         JSONObject jsonObject1 = JSONObject.parseObject(hh);
         System.out.println(hh);
         return jsonObject1;

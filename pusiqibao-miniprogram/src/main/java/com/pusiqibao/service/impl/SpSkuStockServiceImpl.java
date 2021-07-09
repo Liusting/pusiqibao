@@ -76,4 +76,11 @@ public class SpSkuStockServiceImpl implements SpSkuStockService {
     public boolean deleteById(Long id) {
         return this.spSkuStockDao.deleteById(id) > 0;
     }
+
+    @Override
+    public List<SpSkuStock> queryAll(Long id) {
+        SpSkuStock spSkuStock = new SpSkuStock();
+        spSkuStock.setId(id);
+        return this.spSkuStockDao.queryAll(spSkuStock);
+    }
 }

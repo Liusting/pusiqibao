@@ -285,30 +285,22 @@ public class HttpRequest {
     }
 
 
-    /**
-     * 手动获取账户历史记录
-     *
-     * @param URL
-     * @param cookies
-     * @param pageNumber
-     * @param date
-     * @return
-     */
-    public static String domorePost(String URL, String cookies, String pageNumber, String date) {
+
+    public static String domorePost(String URL, JSONObject jsonObject) {
         String result = null;
         try {
             PostMethod postMethod = null;
             postMethod = new PostMethod(URL);
             postMethod.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
-            postMethod.setRequestHeader("Cookie", cookies);
-            //参数设置，需要注意的就是里边不能传NULL，要传空字符串
-            NameValuePair[] data = {
-                    new NameValuePair("p", pageNumber),
-                    new NameValuePair("lt", "51"),
-                    new NameValuePair("date", date)
-            };
 
-            postMethod.setRequestBody(data);
+            //参数设置，需要注意的就是里边不能传NULL，要传空字符串
+//            NameValuePair[] data = {
+//                    new NameValuePair("p", pageNumber),
+//                    new NameValuePair("lt", "51"),
+//                    new NameValuePair("date", date)
+//            };
+
+            postMethod.setRequestBody(jsonObject.toJSONString());
             org.apache.commons.httpclient.HttpClient httpClient = new org.apache.commons.httpclient.HttpClient();
             int response = httpClient.executeMethod(postMethod); // 执行POST方法
             result = postMethod.getResponseBodyAsString();
@@ -317,7 +309,6 @@ public class HttpRequest {
         }
         return result;
     }
-
 
     /**
      * 获取最新一期下单记录
