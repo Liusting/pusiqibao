@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import javax.xml.bind.PrintConversionEvent;
+
 /**
  * Entity基类
  * 
@@ -111,4 +113,5 @@ public class BaseEntity implements Serializable
     {
         this.params = params;
     }
+
 }

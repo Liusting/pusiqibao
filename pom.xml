@@ -211,16 +211,24 @@
                 <version>${pusiqibao.version}</version>
             </dependency>
 
+            <!--  精洗车公众号-->
+            <dependency>
+                <groupId>com.washcar</groupId>
+                <artifactId>washcar</artifactId>
+                <version>${washcar.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
     <modules>
 <!--        <module>ruoyi-admin</module>-->
-<!--        <module>ruoyi-framework</module>-->
-<!--        <module>ruoyi-system</module>-->
+        <module>ruoyi-framework</module>
+        <module>ruoyi-system</module>
 <!--        <module>ruoyi-generator</module>-->
-<!--        <module>ruoyi-common</module>-->
+        <module>ruoyi-common</module>
         <module>pusiqibao-miniprogram</module>
+        <module>washcar</module>
     </modules>
     <packaging>pom</packaging>
 
