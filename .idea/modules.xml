@@ -4,6 +4,10 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/pusiqibao-miniprogram/pusiqibao-miniprogram.iml" filepath="$PROJECT_DIR$/pusiqibao-miniprogram/pusiqibao-miniprogram.iml" />
       <module fileurl="file://$PROJECT_DIR$/ruoyi.iml" filepath="$PROJECT_DIR$/ruoyi.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ruoyi-common/ruoyi-common.iml" filepath="$PROJECT_DIR$/ruoyi-common/ruoyi-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ruoyi-framework/ruoyi-framework.iml" filepath="$PROJECT_DIR$/ruoyi-framework/ruoyi-framework.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ruoyi-system/ruoyi-system.iml" filepath="$PROJECT_DIR$/ruoyi-system/ruoyi-system.iml" />
+      <module fileurl="file://$PROJECT_DIR$/washcar/washcar.iml" filepath="$PROJECT_DIR$/washcar/washcar.iml" />
     </modules>
   </component>
 </project>

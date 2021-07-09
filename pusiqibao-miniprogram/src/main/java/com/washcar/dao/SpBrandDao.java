@@ -1,23 +1,19 @@
-package com.washcar.dao;
+package com.pusiqibao.dao;
 
-<<<<<<< HEAD:pusiqibao-miniprogram/src/main/java/com/washcar/dao/SpCouponDao.java
-import com.washcar.entity.SpCoupon;
-=======
-import com.pusiqibao.entity.SpCoupon;
+import com.pusiqibao.entity.SpBrand;
 import org.apache.ibatis.annotations.Mapper;
->>>>>>> f7d04b92776c40dbf6f34df868ede0a3b7fee56e:pusiqibao-miniprogram/src/main/java/com/pusiqibao/dao/SpCouponDao.java
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 /**
- * 优惠券表(SpCoupon)表数据库访问层
+ * 品牌表(SpBrand)表数据库访问层
  *
  * @author makejava
- * @since 2021-06-30 16:39:30
+ * @since 2021-07-09 17:14:57
  */
 @Mapper
-public interface SpCouponDao {
+public interface SpBrandDao {
 
     /**
      * 通过ID查询单条数据
@@ -25,7 +21,7 @@ public interface SpCouponDao {
      * @param id 主键
      * @return 实例对象
      */
-    SpCoupon queryById(Long id);
+    SpBrand queryById(Long id);
 
     /**
      * 查询指定行数据
@@ -34,48 +30,48 @@ public interface SpCouponDao {
      * @param limit  查询条数
      * @return 对象列表
      */
-    List<SpCoupon> queryAllByLimit(@Param("offset") int offset, @Param("limit") int limit);
+    List<SpBrand> queryAllByLimit(@Param("offset") int offset, @Param("limit") int limit);
 
 
     /**
      * 通过实体作为筛选条件查询
      *
-     * @param spCoupon 实例对象
+     * @param spBrand 实例对象
      * @return 对象列表
      */
-    List<SpCoupon> queryAll(SpCoupon spCoupon);
+    List<SpBrand> queryAll(SpBrand spBrand);
 
     /**
      * 新增数据
      *
-     * @param spCoupon 实例对象
+     * @param spBrand 实例对象
      * @return 影响行数
      */
-    int insert(SpCoupon spCoupon);
+    int insert(SpBrand spBrand);
 
     /**
      * 批量新增数据（MyBatis原生foreach方法）
      *
-     * @param entities List<SpCoupon> 实例对象列表
+     * @param entities List<SpBrand> 实例对象列表
      * @return 影响行数
      */
-    int insertBatch(@Param("entities") List<SpCoupon> entities);
+    int insertBatch(@Param("entities") List<SpBrand> entities);
 
     /**
      * 批量新增或按主键更新数据（MyBatis原生foreach方法）
      *
-     * @param entities List<SpCoupon> 实例对象列表
+     * @param entities List<SpBrand> 实例对象列表
      * @return 影响行数
      */
-    int insertOrUpdateBatch(@Param("entities") List<SpCoupon> entities);
+    int insertOrUpdateBatch(@Param("entities") List<SpBrand> entities);
 
     /**
      * 修改数据
      *
-     * @param spCoupon 实例对象
+     * @param spBrand 实例对象
      * @return 影响行数
      */
-    int update(SpCoupon spCoupon);
+    int update(SpBrand spBrand);
 
     /**
      * 通过主键删除数据
