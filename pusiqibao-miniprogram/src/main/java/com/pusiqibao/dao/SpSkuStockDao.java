@@ -1,6 +1,6 @@
-package com.washcar.dao;
+package com.pusiqibao.dao;
 
-import com.washcar.entity.SpSkuStock;
+import com.pusiqibao.entity.SpSkuStock;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

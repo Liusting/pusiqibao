@@ -1,4 +1,4 @@
-package com.washcar.entity;
+package com.pusiqibao.entity;
 
 import java.io.Serializable;
 import java.util.Date;

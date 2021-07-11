@@ -1,4 +1,4 @@
-package com.washcar.entity;
+package com.pusiqibao.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;

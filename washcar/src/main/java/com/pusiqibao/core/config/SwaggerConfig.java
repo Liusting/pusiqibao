@@ -1,4 +1,4 @@
-package com.washcar.config;
+package com.pusiqibao.config;
 
 
 import io.swagger.annotations.ApiOperation;

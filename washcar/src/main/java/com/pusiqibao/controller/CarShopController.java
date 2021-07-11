@@ -1,13 +1,10 @@
-package com.washcar.controller;
+package com.pusiqibao.controller;
 
-import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.ruoyi.common.core.controller.BaseController;
 import com.ruoyi.common.core.domain.AjaxResult;
-import com.ruoyi.common.core.page.TableDataInfo;
-import com.sun.org.apache.bcel.internal.generic.NEW;
-import com.washcar.entity.CarShop;
-import com.washcar.service.CarShopService;
+import com.pusiqibao.entity.CarShop;
+import com.pusiqibao.service.CarShopService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;

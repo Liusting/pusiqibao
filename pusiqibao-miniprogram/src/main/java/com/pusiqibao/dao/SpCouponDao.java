@@ -1,11 +1,6 @@
-package com.washcar.dao;
-
-<<<<<<< HEAD:pusiqibao-miniprogram/src/main/java/com/washcar/dao/SpCouponDao.java
-import com.washcar.entity.SpCoupon;
-=======
+package com.pusiqibao.dao;
 import com.pusiqibao.entity.SpCoupon;
 import org.apache.ibatis.annotations.Mapper;
->>>>>>> f7d04b92776c40dbf6f34df868ede0a3b7fee56e:pusiqibao-miniprogram/src/main/java/com/pusiqibao/dao/SpCouponDao.java
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

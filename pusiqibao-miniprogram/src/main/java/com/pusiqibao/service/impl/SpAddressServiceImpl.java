@@ -1,8 +1,8 @@
-package com.washcar.service.impl;
+package com.pusiqibao.service.impl;
 
-import com.washcar.dao.SpAddressDao;
-import com.washcar.entity.SpAddress;
-import com.washcar.service.SpAddressService;
+import com.pusiqibao.dao.SpAddressDao;
+import com.pusiqibao.entity.SpAddress;
+import com.pusiqibao.service.SpAddressService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

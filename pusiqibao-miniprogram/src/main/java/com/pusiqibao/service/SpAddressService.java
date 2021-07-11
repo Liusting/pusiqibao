@@ -1,6 +1,6 @@
-package com.washcar.service;
+package com.pusiqibao.service;
 
-import com.washcar.entity.SpAddress;
+import com.pusiqibao.entity.SpAddress;
 
 import java.util.List;
 

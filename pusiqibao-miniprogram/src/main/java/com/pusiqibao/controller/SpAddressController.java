@@ -1,10 +1,10 @@
-package com.washcar.controller;
+package com.pusiqibao.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.washcar.config.core.domain.AjaxResult;
-import com.washcar.entity.SpAddress;
-import com.washcar.service.SpAddressService;
+import com.pusiqibao.config.core.domain.AjaxResult;
+import com.pusiqibao.entity.SpAddress;
+import com.pusiqibao.service.SpAddressService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;

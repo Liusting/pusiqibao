@@ -1,6 +1,6 @@
-package com.washcar.service;
+package com.pusiqibao.service;
 
-import com.washcar.entity.SpProductAttribute;
+import com.pusiqibao.entity.SpProductAttribute;
 
 import java.util.List;
 

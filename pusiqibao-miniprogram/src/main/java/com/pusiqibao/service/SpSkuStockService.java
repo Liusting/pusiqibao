@@ -1,6 +1,6 @@
-package com.washcar.service;
+package com.pusiqibao.service;
 
-import com.washcar.entity.SpSkuStock;
+import com.pusiqibao.entity.SpSkuStock;
 
 import java.util.List;
 

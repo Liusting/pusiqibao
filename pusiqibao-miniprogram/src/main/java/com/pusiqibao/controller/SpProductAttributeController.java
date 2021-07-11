@@ -1,8 +1,8 @@
-package com.washcar.controller;
+package com.pusiqibao.controller;
 
-import com.washcar.config.core.domain.AjaxResult;
-import com.washcar.entity.SpProductAttribute;
-import com.washcar.service.SpProductAttributeService;
+import com.pusiqibao.config.core.domain.AjaxResult;
+import com.pusiqibao.entity.SpProductAttribute;
+import com.pusiqibao.service.SpProductAttributeService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.GetMapping;

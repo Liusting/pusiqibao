@@ -1,16 +1,11 @@
-package com.washcar.controller;
+package com.pusiqibao.controller;
 
-<<<<<<< HEAD:pusiqibao-miniprogram/src/main/java/com/washcar/controller/SpProductController.java
-import com.washcar.config.core.domain.AjaxResult;
-import com.washcar.entity.SpProduct;
-import com.washcar.service.SpProductService;
-=======
 import com.pusiqibao.config.core.domain.AjaxResult;
 import com.pusiqibao.entity.SpProduct;
-import com.pusiqibao.entity.SpSkuStock;
 import com.pusiqibao.service.SpProductService;
+
+import com.pusiqibao.entity.SpSkuStock;
 import com.pusiqibao.service.SpSkuStockService;
->>>>>>> f7d04b92776c40dbf6f34df868ede0a3b7fee56e:pusiqibao-miniprogram/src/main/java/com/pusiqibao/controller/SpProductController.java
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.GetMapping;

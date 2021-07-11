@@ -1,8 +1,6 @@
-package com.washcar.entity;
+package com.pusiqibao.entity;
 
 import com.ruoyi.common.core.domain.BaseEntity;
-
-import java.io.Serializable;
 
 /**
  * (CarShop)实体类

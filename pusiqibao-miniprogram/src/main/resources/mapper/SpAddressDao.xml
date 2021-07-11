@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.washcar.dao.SpAddressDao">
+<mapper namespace="com.pusiqibao.dao.SpAddressDao">
 
-    <resultMap type="com.washcar.entity.SpAddress" id="SpAddressMap">
+    <resultMap type="com.pusiqibao.entity.SpAddress" id="SpAddressMap">
         <result property="id" column="id" jdbcType="VARCHAR"/>
         <result property="receivername" column="receiverName" jdbcType="VARCHAR"/>
         <result property="phonenumber" column="phoneNumber" jdbcType="VARCHAR"/>

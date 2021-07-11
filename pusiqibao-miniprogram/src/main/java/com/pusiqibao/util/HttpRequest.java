@@ -1,7 +1,6 @@
-package com.washcar.util;
+package com.pusiqibao.util;
 
 import com.alibaba.fastjson.JSONObject;
-import com.pusiqibao.config.WXPayConfig;
 import com.wechat.pay.contrib.apache.httpclient.util.PemUtil;
 import okhttp3.HttpUrl;
 import org.apache.commons.httpclient.NameValuePair;
@@ -17,7 +16,6 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.security.*;

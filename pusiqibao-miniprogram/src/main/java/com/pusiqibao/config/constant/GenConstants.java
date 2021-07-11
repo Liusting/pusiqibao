@@ -1,4 +1,4 @@
-package com.washcar.config.constant;
+package com.pusiqibao.config.constant;
 
 /**
  * 代码生成通用常量

@@ -1,8 +1,8 @@
-package com.washcar.service.impl;
+package com.pusiqibao.service.impl;
 
-import com.washcar.dao.SpProductAttributeDao;
-import com.washcar.entity.SpProductAttribute;
-import com.washcar.service.SpProductAttributeService;
+import com.pusiqibao.dao.SpProductAttributeDao;
+import com.pusiqibao.entity.SpProductAttribute;
+import com.pusiqibao.service.SpProductAttributeService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

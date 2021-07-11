@@ -1,7 +1,7 @@
-package com.washcar.controller;
+package com.pusiqibao.controller;
 
-import com.washcar.config.core.domain.AjaxResult;
-import com.washcar.service.SpSkuStockService;
+import com.pusiqibao.config.core.domain.AjaxResult;
+import com.pusiqibao.service.SpSkuStockService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.GetMapping;

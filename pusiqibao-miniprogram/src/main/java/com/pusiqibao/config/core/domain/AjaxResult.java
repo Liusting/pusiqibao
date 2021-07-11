@@ -1,6 +1,6 @@
-package com.washcar.config.core.domain;
+package com.pusiqibao.config.core.domain;
 
-import com.washcar.config.constant.HttpStatus;
+import com.pusiqibao.config.constant.HttpStatus;
 
 import java.util.HashMap;
 

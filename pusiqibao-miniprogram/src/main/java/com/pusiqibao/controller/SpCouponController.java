@@ -1,7 +1,7 @@
-package com.washcar.controller;
+package com.pusiqibao.controller;
 
-import com.washcar.entity.SpCoupon;
-import com.washcar.service.SpCouponService;
+import com.pusiqibao.entity.SpCoupon;
+import com.pusiqibao.service.SpCouponService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

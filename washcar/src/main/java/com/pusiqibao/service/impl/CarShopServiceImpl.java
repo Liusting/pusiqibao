@@ -1,8 +1,8 @@
-package com.washcar.service.impl;
+package com.pusiqibao.service.impl;
 
-import com.washcar.dao.CarShopDao;
-import com.washcar.entity.CarShop;
-import com.washcar.service.CarShopService;
+import com.pusiqibao.dao.CarShopDao;
+import com.pusiqibao.entity.CarShop;
+import com.pusiqibao.service.CarShopService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

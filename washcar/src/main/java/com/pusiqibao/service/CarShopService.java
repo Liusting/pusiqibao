@@ -1,6 +1,6 @@
-package com.washcar.service;
+package com.pusiqibao.service;
 
-import com.washcar.entity.CarShop;
+import com.pusiqibao.entity.CarShop;
 
 import java.util.List;
 

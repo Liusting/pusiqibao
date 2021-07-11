@@ -1,6 +1,6 @@
-package com.washcar.dao;
+package com.pusiqibao.dao;
 
-import com.washcar.entity.SpProductAttribute;
+import com.pusiqibao.entity.SpProductAttribute;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
