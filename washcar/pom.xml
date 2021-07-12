@@ -11,7 +11,7 @@
     </parent>
 
 
-    <groupId>com.ruoyi</groupId>
+    <groupId>com.washcar</groupId>
     <artifactId>washcar</artifactId>
     <dependencies>
         <!-- 核心模块-->

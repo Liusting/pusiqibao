@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	
-    <groupId>com.xinhongyu</groupId>
-    <artifactId>xinhongyu</artifactId>
+    <groupId>com.ruoyi</groupId>
+    <artifactId>ruoyi</artifactId>
     <version>3.4.0</version>
 
     <name>xinhongyu</name>
@@ -15,6 +15,7 @@
     <properties>
         <ruoyi.version>3.4.0</ruoyi.version>
         <pusiqibao.version>3.4.0</pusiqibao.version>
+        <washcar.version>3.4.0</washcar.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
@@ -177,11 +178,11 @@
 
 	
             <!-- 代码生成-->
-            <dependency>
-                <groupId>com.ruoyi</groupId>
-                <artifactId>ruoyi-generator</artifactId>
-                <version>${ruoyi.version}</version>
-            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>com.ruoyi</groupId>-->
+<!--                <artifactId>ruoyi-generator</artifactId>-->
+<!--                <version>${ruoyi.version}</version>-->
+<!--            </dependency>-->
 			
             <!-- 核心模块-->
             <dependency>
